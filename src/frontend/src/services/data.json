@@ -1,0 +1,134 @@
+{
+    "Usuarios": [
+      {
+        "id": 1,
+        "nombre": "Juan",
+        "apellido": "Pérez",
+        "email": "juan.perez@example.com",
+        "contraseña": "hashed_password_1",
+        "rol": "administrador",
+        "fecha_registro": "2024-01-01",
+        "estado": true
+      },
+      {
+        "id": 2,
+        "nombre": "Ana",
+        "apellido": "García",
+        "email": "ana.garcia@example.com",
+        "contraseña": "hashed_password_2",
+        "rol": "entrenador",
+        "fecha_registro": "2024-01-10",
+        "estado": true
+      },
+      {
+        "id": 3,
+        "nombre": "Luis",
+        "apellido": "Martínez",
+        "email": "luis.martinez@example.com",
+        "contraseña": "hashed_password_3",
+        "rol": "cliente",
+        "fecha_registro": "2024-01-15",
+        "estado": true
+      }
+    ],
+    "Planes": [
+      {
+        "id": 1,
+        "nombre": "Plan Básico",
+        "precio": 29.99,
+        "duracion": 1,
+        "descripcion": "Acceso limitado al gimnasio y clases grupales."
+      },
+      {
+        "id": 2,
+        "nombre": "Plan Premium",
+        "precio": 49.99,
+        "duracion": 3,
+        "descripcion": "Acceso completo al gimnasio y entrenadores personalizados."
+      }
+    ],
+    "Membresias": [
+      {
+        "id": 1,
+        "usuario_id": 3,
+        "plan_id": 1,
+        "fecha_inicio": "2024-02-01",
+        "fecha_fin": "2024-03-01",
+        "estado": true
+      }
+    ],
+    "Entrenadores": [
+      {
+        "id": 1,
+        "usuario_id": 2,
+        "especialidad": "Fuerza y resistencia",
+        "calificacion": 4.8
+      }
+    ],
+    "Ejercicios": [
+      {
+        "id": 1,
+        "nombre": "Sentadillas",
+        "musculo_objetivo": "Piernas",
+        "descripcion": "Ejercicio para fortalecer las piernas y glúteos.",
+        "nivel_dificultad": "intermedio"
+      },
+      {
+        "id": 2,
+        "nombre": "Press de banca",
+        "musculo_objetivo": "Pectorales",
+        "descripcion": "Fortalece el pecho y los brazos.",
+        "nivel_dificultad": "avanzado"
+      }
+    ],
+    "Rutinas": [
+      {
+        "id": 1,
+        "usuario_id": 3,
+        "entrenador_id": 1,
+        "nombre": "Rutina de fuerza",
+        "objetivo": "Aumentar fuerza muscular en 4 semanas.",
+        "fecha_creacion": "2024-02-10"
+      }
+    ],
+    "Rutinas_Ejercicios": [
+      {
+        "id": 1,
+        "rutina_id": 1,
+        "ejercicio_id": 1,
+        "repeticiones": 12,
+        "series": 3
+      },
+      {
+        "id": 2,
+        "rutina_id": 1,
+        "ejercicio_id": 2,
+        "repeticiones": 10,
+        "series": 4
+      }
+    ],
+    "Progreso": [
+      {
+        "id": 1,
+        "usuario_id": 3,
+        "peso": 70.50,
+        "porcentaje_grasa": 15.00,
+        "fecha": "2024-02-15"
+      }
+    ],
+    "Asistencias": [
+      {
+        "id": 1,
+        "usuario_id": 3,
+        "fecha": "2024-02-10T10:00:00",
+        "estado": "presente"
+      },
+      {
+        "id": 2,
+        "usuario_id": 3,
+        "fecha": "2024-02-12T10:00:00",
+        "estado": "ausente"
+      }
+    ]
+  }
+  

@@ -1,0 +1,11 @@
+// ui/zod.js
+"use client"
+
+import { z } from "zod"
+
+export const formSchema = z.object({
+  username: z.string().min(2).max(50),
+});
+
+// Exporta `z` si es necesario en otros lugares
+export { z };

@@ -1,0 +1,29 @@
+services:
+  # informacion de los documentos del proyecto
+  backend:
+    build: ./src/backend
+    ports:
+      - "3001:3001"
+    env_file: ./src/backend/.env
+    depends_on:
+      - db
+    command: npm run start:dev
+
+  frontend:
+    build: ./src/frontend
+    ports:
+      - "3000:3000"
+    env_file: ./src/frontend/.env
+    environment:
+      - REACT_APP_API_URL=http://backend:3001
+  # informacion de los documentos de docker
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_gym
+
+# docker-compose up --build
