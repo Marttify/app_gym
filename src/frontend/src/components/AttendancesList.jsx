@@ -1,5 +1,5 @@
+'use client'
 import React, {useEffect, useState} from 'react';
-import {SquarePen, Trash2, UserPlus} from 'lucide-react';
 import '../tailwind.css';
 import {
   Table,
@@ -33,15 +33,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog"
-import {deleteProgress, readProgress} from '../services/fetch-progress';
-import ProgressForm from './forms/FormProgreso';
 
-const ProgresoList = () => {
-  const [progress, setProgress] = useState([]);
+import {SquarePen, Trash2, UserPlus} from 'lucide-react';
+import {deleteAttendance, readAttendance} from '../services/fetch-attendance';
+import AttendanceForm from './forms/FormAttendance';
+const AttendancesList = () => {
+  const [attendances, setAttendances] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    readProgress({setProgress})
+    readAttendance({setAttendances});
   }, []);
 
   return (
@@ -53,12 +54,12 @@ const ProgresoList = () => {
           </DialogTrigger>
           <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
             <DialogHeader>
-              <DialogTitle className="text-lg font-semibold">Crear nuevo progreso</DialogTitle>
+              <DialogTitle className="text-lg font-semibold">Crear nueva asistencia</DialogTitle>
               <DialogDescription className="text-sm text-gray-400">
-                Completa los campos para agregar un nuevo plan al sistema.
+                Completa los campos para agregar una nueva asistencia al sistema.
               </DialogDescription>
             </DialogHeader>
-            <ProgressForm action="create" />
+            <AttendanceForm action="create" />
           </DialogContent>
         </Dialog>
         <AlertDialog>
@@ -69,7 +70,7 @@ const ProgresoList = () => {
             <AlertDialogHeader>
               <AlertDialogTitle>Estas seguro de eliminar toda la tabla?</AlertDialogTitle>
               <AlertDialogDescription>
-                Esta acción eliminará permanentemente los progresos de la tabla
+                Esta acción eliminará permanentemente las asistencias de la tabla
                 y eliminará sus datos de nuestros servidores.
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -81,13 +82,11 @@ const ProgresoList = () => {
         </AlertDialog>
       </div>
       <Table className="w-full border border-gray-700">
-        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de progresos</TableCaption>
+        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de asistencias</TableCaption>
         <TableHeader>
-          <TableRow className="bg-gray-800">
-            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Peso</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Porcentaje de grasa</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Fecha</TableHead>
+          <TableRow className="bg-gray-800 w-full">
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
@@ -95,17 +94,15 @@ const ProgresoList = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {progress.map((progres) => (
+          {attendances.map((attendance) => (
             <TableRow
-              key={progres.usuario_id}
+              key={attendance.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
-              <TableCell className="text-start font-medium text-gray-100">{progres.usuario_id}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.peso}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.porcentaje_grasa}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.fecha).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.createdAt).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{new Date(attendance.fecha).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{attendance.estado}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(attendance.createdAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(attendance.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">
                 <Dialog>
                   <DialogTrigger >
@@ -113,12 +110,12 @@ const ProgresoList = () => {
                   </DialogTrigger>
                   <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
                     <DialogHeader>
-                      <DialogTitle className="text-lg font-semibold">Actualizar progreso</DialogTitle>
+                      <DialogTitle className="text-lg font-semibold">Actualizar asistencia</DialogTitle>
                       <DialogDescription className="text-sm text-gray-400">
                         Completa los campos a modificar y luego dale a continuar para ceptar el cambio.
                       </DialogDescription>
                     </DialogHeader>
-                    <ProgressForm action="update" progres={progres} id={progres.id} />
+                    <AttendanceForm action="update" attendance={attendance} id={attendance.id} />
                   </DialogContent>
                 </Dialog>
               </TableCell>
@@ -131,15 +128,15 @@ const ProgresoList = () => {
                     <AlertDialogHeader>
                       <AlertDialogTitle>¿Estás seguro de eliminarlo?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Esta acción eliminará permanentemente el progreso
-                        y eliminará los datos de nuestros servidores.
+                        Esta acción eliminará permanentemente la asistencia
+                        y eliminará sus datos de nuestros servidores.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancelar</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
-                          deleteProgress({progres, setProgress})
+                          deleteAttendance({attendance, setAttendances})
                         }}
                       >
                         Continuar
@@ -148,21 +145,20 @@ const ProgresoList = () => {
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
-
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
         <TableFooter>
-          <TableRow className="bg-gray-800">
+          <TableRow>
             <TableCell
               colSpan={7}
               className="text-right text-gray-300 font-semibold"
             >
-              Total de progresos:
+              Total de asistencias tomadas:
             </TableCell>
             <TableCell className="text-right text-gray-100 font-bold">
-              {progress.length}
+              {attendances.length}
             </TableCell>
           </TableRow>
         </TableFooter>
@@ -171,4 +167,4 @@ const ProgresoList = () => {
   );
 };
 
-export default ProgresoList;
+export default AttendancesList;

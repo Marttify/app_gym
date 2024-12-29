@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SquarePen, Trash2, UserPlus} from 'lucide-react';
+import {Trash2, SquarePen, UserPlus} from 'lucide-react';
 import '../tailwind.css';
 import {
   Table,
@@ -33,15 +33,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog"
-import {deleteProgress, readProgress} from '../services/fetch-progress';
-import ProgressForm from './forms/FormProgreso';
 
-const ProgresoList = () => {
-  const [progress, setProgress] = useState([]);
+import {deleteMembership, readMemberships} from '../services/fetch-membership';
+import MembershipForm from './forms/FormMembership';
+
+const MembershipList = () => {
+  const [memberships, setMemberships] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    readProgress({setProgress})
+    readMemberships({setMemberships});
   }, []);
 
   return (
@@ -53,12 +54,12 @@ const ProgresoList = () => {
           </DialogTrigger>
           <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
             <DialogHeader>
-              <DialogTitle className="text-lg font-semibold">Crear nuevo progreso</DialogTitle>
+              <DialogTitle className="text-lg font-semibold">Crear nueva membresia</DialogTitle>
               <DialogDescription className="text-sm text-gray-400">
-                Completa los campos para agregar un nuevo plan al sistema.
+                Completa los campos para agregar un nuevo usuario al sistema.
               </DialogDescription>
             </DialogHeader>
-            <ProgressForm action="create" />
+            <MembershipForm action="create" />
           </DialogContent>
         </Dialog>
         <AlertDialog>
@@ -69,7 +70,7 @@ const ProgresoList = () => {
             <AlertDialogHeader>
               <AlertDialogTitle>Estas seguro de eliminar toda la tabla?</AlertDialogTitle>
               <AlertDialogDescription>
-                Esta acción eliminará permanentemente los progresos de la tabla
+                Esta acción eliminará permanentemente las membresias de la tabla
                 y eliminará sus datos de nuestros servidores.
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -81,13 +82,13 @@ const ProgresoList = () => {
         </AlertDialog>
       </div>
       <Table className="w-full border border-gray-700">
-        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de progresos</TableCaption>
+        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de membresias</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Peso</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Porcentaje de grasa</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Fecha</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha inicio</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha fin</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
@@ -95,17 +96,17 @@ const ProgresoList = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {progress.map((progres) => (
+          {memberships.map((membership) => (
             <TableRow
-              key={progres.usuario_id}
+              key={membership.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
-              <TableCell className="text-start font-medium text-gray-100">{progres.usuario_id}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.peso}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.porcentaje_grasa}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.fecha).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.createdAt).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{membership.usuario_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(membership.fecha_inicio).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(membership.fecha_fin).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{membership.estado ? "activa" : "inactiva"}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(membership.createdAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(membership.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">
                 <Dialog>
                   <DialogTrigger >
@@ -113,12 +114,12 @@ const ProgresoList = () => {
                   </DialogTrigger>
                   <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
                     <DialogHeader>
-                      <DialogTitle className="text-lg font-semibold">Actualizar progreso</DialogTitle>
+                      <DialogTitle className="text-lg font-semibold">Actualizar membresia</DialogTitle>
                       <DialogDescription className="text-sm text-gray-400">
                         Completa los campos a modificar y luego dale a continuar para ceptar el cambio.
                       </DialogDescription>
                     </DialogHeader>
-                    <ProgressForm action="update" progres={progres} id={progres.id} />
+                    <MembershipForm action="update" membership={membership} id={membership.id} />
                   </DialogContent>
                 </Dialog>
               </TableCell>
@@ -131,15 +132,15 @@ const ProgresoList = () => {
                     <AlertDialogHeader>
                       <AlertDialogTitle>¿Estás seguro de eliminarlo?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Esta acción eliminará permanentemente el progreso
-                        y eliminará los datos de nuestros servidores.
+                        Esta acción eliminará permanentemente la membresia
+                        y eliminará sus datos de nuestros servidores.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                       <AlertDialogCancel>Cancelar</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
-                          deleteProgress({progres, setProgress})
+                          deleteMembership({membership, setMemberships})
                         }}
                       >
                         Continuar
@@ -159,10 +160,10 @@ const ProgresoList = () => {
               colSpan={7}
               className="text-right text-gray-300 font-semibold"
             >
-              Total de progresos:
+              Total de membresias tomadas:
             </TableCell>
             <TableCell className="text-right text-gray-100 font-bold">
-              {progress.length}
+              {memberships.length}
             </TableCell>
           </TableRow>
         </TableFooter>
@@ -171,4 +172,4 @@ const ProgresoList = () => {
   );
 };
 
-export default ProgresoList;
+export default MembershipList;

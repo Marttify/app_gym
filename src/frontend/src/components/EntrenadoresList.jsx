@@ -66,7 +66,7 @@ const EntrenadoresList = () => {
         <TableFooter>
           <TableRow className="bg-gray-800">
             <TableCell
-              colSpan={4}
+              colSpan={7}
               className="text-right text-gray-300 font-semibold"
             >
               Total de entrenadores:

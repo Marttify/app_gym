@@ -33,15 +33,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog"
-import {deleteProgress, readProgress} from '../services/fetch-progress';
-import ProgressForm from './forms/FormProgreso';
 
-const ProgresoList = () => {
-  const [progress, setProgress] = useState([]);
+import RoutineExerciseForm from './forms/FormRutina_ejercicio';
+import {deleteRoutineExercise, readRoutineExercise} from '../services/fetch-routineExercise';
+
+const RoutineExercise = () => {
+  const [routineExercise, setRoutineExercise] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    readProgress({setProgress})
+    readRoutineExercise({setRoutineExercise});
   }, []);
 
   return (
@@ -53,12 +54,12 @@ const ProgresoList = () => {
           </DialogTrigger>
           <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
             <DialogHeader>
-              <DialogTitle className="text-lg font-semibold">Crear nuevo progreso</DialogTitle>
+              <DialogTitle className="text-lg font-semibold">Crear nueva rutina de ejercicio</DialogTitle>
               <DialogDescription className="text-sm text-gray-400">
-                Completa los campos para agregar un nuevo plan al sistema.
+                Completa los campos para agregar una nueva rutina de ejercicios al sistema.
               </DialogDescription>
             </DialogHeader>
-            <ProgressForm action="create" />
+            <RoutineExerciseForm action="create" />
           </DialogContent>
         </Dialog>
         <AlertDialog>
@@ -69,7 +70,7 @@ const ProgresoList = () => {
             <AlertDialogHeader>
               <AlertDialogTitle>Estas seguro de eliminar toda la tabla?</AlertDialogTitle>
               <AlertDialogDescription>
-                Esta acción eliminará permanentemente los progresos de la tabla
+                Esta acción eliminará permanentemente las rutinas de jercicios de la tabla
                 y eliminará sus datos de nuestros servidores.
               </AlertDialogDescription>
             </AlertDialogHeader>
@@ -81,13 +82,13 @@ const ProgresoList = () => {
         </AlertDialog>
       </div>
       <Table className="w-full border border-gray-700">
-        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de progresos</TableCaption>
+        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de rutinas de ejercicios</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
-            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Peso</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Porcentaje de grasa</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Fecha</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de la rutina</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">ID del ejercicio</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Repeticiones</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Series</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
@@ -95,17 +96,17 @@ const ProgresoList = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {progress.map((progres) => (
+          {routineExercise.map((exercise) => (
             <TableRow
-              key={progres.usuario_id}
+              key={exercise.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
-              <TableCell className="text-start font-medium text-gray-100">{progres.usuario_id}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.peso}</TableCell>
-              <TableCell className="text-start text-gray-100">{progres.porcentaje_grasa}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.fecha).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.createdAt).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(progres.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{exercise.rutina_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{exercise.ejercicio_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{exercise.repeticiones}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(exercise.series).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(exercise.createdAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(exercise.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">
                 <Dialog>
                   <DialogTrigger >
@@ -113,12 +114,12 @@ const ProgresoList = () => {
                   </DialogTrigger>
                   <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
                     <DialogHeader>
-                      <DialogTitle className="text-lg font-semibold">Actualizar progreso</DialogTitle>
+                      <DialogTitle className="text-lg font-semibold">Actualizar rutina de ejercicio</DialogTitle>
                       <DialogDescription className="text-sm text-gray-400">
                         Completa los campos a modificar y luego dale a continuar para ceptar el cambio.
                       </DialogDescription>
                     </DialogHeader>
-                    <ProgressForm action="update" progres={progres} id={progres.id} />
+                    <RoutineExerciseForm action="update" routineExercise={exercise} id={exercise.id} />
                   </DialogContent>
                 </Dialog>
               </TableCell>
@@ -131,7 +132,7 @@ const ProgresoList = () => {
                     <AlertDialogHeader>
                       <AlertDialogTitle>¿Estás seguro de eliminarlo?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        Esta acción eliminará permanentemente el progreso
+                        Esta acción eliminará permanentemente la rutina de ejercicio
                         y eliminará los datos de nuestros servidores.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
@@ -139,7 +140,7 @@ const ProgresoList = () => {
                       <AlertDialogCancel>Cancelar</AlertDialogCancel>
                       <AlertDialogAction
                         onClick={async () => {
-                          deleteProgress({progres, setProgress})
+                          deleteRoutineExercise({routineExercise, setRoutineExercise})
                         }}
                       >
                         Continuar
@@ -159,10 +160,10 @@ const ProgresoList = () => {
               colSpan={7}
               className="text-right text-gray-300 font-semibold"
             >
-              Total de progresos:
+              Total de rutinas de ejercicios:
             </TableCell>
             <TableCell className="text-right text-gray-100 font-bold">
-              {progress.length}
+              {routineExercise.length}
             </TableCell>
           </TableRow>
         </TableFooter>
@@ -171,4 +172,4 @@ const ProgresoList = () => {
   );
 };
 
-export default ProgresoList;
+export default RoutineExercise;
