@@ -33,12 +33,33 @@ Las siguientes rutas están disponibles en el sistema:
 - **bodyParser**: Middleware para analizar el cuerpo de las solicitudes HTTP.
 - **Docker**: Herramienta para contenedores que permite ejecutar el proyecto de manera aislada y uniforme en cualquier entorno.
 
+
+#### Diagrama de la Lógica de la Base de Datos
+
+<img src="https://github.com/user-attachments/assets/8c6198ac-926d-47aa-85cb-8ea1e90ad950" alt="Lógica de Base de Datos del Gimnasio" width="600"/>
+
+*Diagrama que representa la estructura y relaciones en la base de datos.*
+
+
 ### Frontend
 
 - **React**: Biblioteca para construir interfaces de usuario.
 - **axios**: Cliente HTTP para interactuar con el backend y obtener datos.
 - **Tailwind CSS**: Herramienta de utilidad para estilizar la interfaz.
 - **shadcn/ui**: Librería para construir componentes de interfaz de usuario reutilizables y consistentes.
+
+#### Capturas de Pantalla de la Interfaz de Usuario
+
+1. **Vista principal de la tabla**  
+   <img src="https://github.com/user-attachments/assets/aec1d4b2-4b27-4ad9-b0be-f3c4ca909572" alt="Dashboard Principal" width="500"/>
+
+   *Vista de la tabla de usuarios donde se presentan la informacion clave.*
+
+2. **Gestión de usuarios**  
+   <img src="https://github.com/user-attachments/assets/c28d26f7-fee6-4c36-b1cc-b828b5dc3bdc" alt="Gestión de Usuarios" width="500"/>
+
+   *Interfaz para gestionar los usuarios registrados en el sistema.*
+
 
 ## Instalación
 
