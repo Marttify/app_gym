@@ -17,9 +17,16 @@ import { Input } from "../ui/input";
 import {createMembership, updateMembership} from "../../services/fetch-membership";
 
 // Esquema de validación
+// Esquema de validación
 const formSchema = z.object({
-  usuario_id: z.number().int().positive({ message: "ID de usuario debe ser un número positivo." }),
-  plan_id: z.number().int().positive({ message: "ID de plan debe ser un número positivo." }),
+  usuario_id: z
+    .string()
+    .transform((val) => parseInt(val, 10))  // Convierte la cadena a número
+    .refine((val) => !isNaN(val), { message: "ID de usuario debe ser un número positivo." }),
+  plan_id: z
+    .string()
+    .transform((val) => parseInt(val, 10))  // Convierte la cadena a número
+    .refine((val) => !isNaN(val), { message: "ID de plan debe ser un número positivo." }),
   fecha_inicio: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, {
     message: "La fecha de inicio debe estar en formato YYYY-MM-DD.",
   }),
@@ -27,6 +34,7 @@ const formSchema = z.object({
     message: "La fecha de fin debe estar en formato YYYY-MM-DD.",
   }),
 });
+
 
 const MembershipForm = ({ action, membership, id }) => {
   const defaultValues = action === "create"

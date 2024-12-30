@@ -85,6 +85,7 @@ const RoutineExercise = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de rutinas de ejercicios</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
+            <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de la rutina</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">ID del ejercicio</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Repeticiones</TableHead>
@@ -101,6 +102,7 @@ const RoutineExercise = () => {
               key={exercise.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-start text-gray-100">{exercise.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{exercise.rutina_id}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.ejercicio_id}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.repeticiones}</TableCell>

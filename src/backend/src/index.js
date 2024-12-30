@@ -43,6 +43,25 @@ app.post('/create-usuario', async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 });
+// Eliminar todos los usuarios
+app.delete('/delete-usuarios', async (req, res) => {
+  try {
+    const result = await User.destroy({
+      where: {},
+      force: true,
+    });
+
+    if (result === 0) {
+      return res.status(404).json({ message: 'No se encontraron usuarios para eliminar.' });
+    }
+
+    res.status(200).json({ message: `Se eliminaron ${result} usuarios correctamente.` });
+  } catch (error) {
+    console.error('Error al eliminar los usuarios:', error.message);
+    res.status(500).json({ error: 'Hubo un problema al eliminar los usuarios.' });
+  }
+});
+
 // Eliminar un usuario por ID
 app.delete('/delete-usuario/:id', async (req, res) => {
   const id = req.params.id;

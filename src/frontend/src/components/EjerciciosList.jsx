@@ -34,7 +34,7 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog"
 
-import {deleteExercise, readExercise} from '../services/fetch-exercise';
+import {deleteAllUsers, deleteExercise, readExercise} from '../services/fetch-exercise';
 import ExerciseForm from './forms/FormEjercicio';
 const EjerciciosList = () => {
   const [exercises, setExercises] = useState([]);
@@ -75,7 +75,13 @@ const EjerciciosList = () => {
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction>Continuar</AlertDialogAction>
+              <AlertDialogAction
+                onClick={async () => {
+                  deleteAllUsers()
+                }}
+              >
+                Continuar
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -84,6 +90,7 @@ const EjerciciosList = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de ejercicios</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
+            <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
@@ -98,6 +105,7 @@ const EjerciciosList = () => {
               key={exercise.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-start text-gray-100">{exercise.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{exercise.nombre}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.musculo_objetivo}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.descripcion}</TableCell>

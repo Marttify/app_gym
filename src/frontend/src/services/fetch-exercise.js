@@ -3,7 +3,7 @@
 import api from './api';
 import data from './data.json';
 
-export async function readExercise ({setExercises}) {
+export async function readExercise({setExercises}) {
   try {
     const response = await api.get('/get-ejercicios');
 
@@ -21,14 +21,14 @@ export async function readExercise ({setExercises}) {
 
 export async function createExercise({data}) {
   try {
-      const response = await api.post("/create-ejercicio", data);
-      console.log("Ejercicio creado con éxito:", response.data);
+    const response = await api.post("/create-ejercicio", data);
+    console.log("Ejercicio creado con éxito:", response.data);
   } catch (error) {
     console.error(`Error al crear el ejercicio:`, error);
   }
 }
 
-export async function updateExercise({ data, id}) {
+export async function updateExercise({data, id}) {
   try {
     const response = await api.put(`/update-ejercicio/${id}`, data);
     console.log("Ejercicio actualizado con éxito:", response.data);
@@ -60,3 +60,16 @@ export async function deleteExercise({exercise, setExercises}) {
     console.error("Hubo un error al intentar eliminar el ejercicio:", error);
   }
 }
+
+
+export const deleteAllUsers = async () => {
+  try {
+    const response = await api.delete('/delete-usuarios');
+    console.log(response.data.message);
+  } catch (error) {
+    console.error("Error al eliminar todos los usuarios:", error.message);
+  }
+};
+
+deleteAllUsers();
+

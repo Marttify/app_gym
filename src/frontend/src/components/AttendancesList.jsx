@@ -85,6 +85,7 @@ const AttendancesList = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de asistencias</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800 w-full">
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
@@ -99,6 +100,7 @@ const AttendancesList = () => {
               key={attendance.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-start text-gray-100">{attendance.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{new Date(attendance.fecha).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{attendance.estado}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(attendance.createdAt).toLocaleString()}</TableCell>

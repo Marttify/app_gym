@@ -28,15 +28,21 @@ export async function createUser({data}) {
   }
 }
 
-export async function updateUser({ data, id}) {
+export async function updateUser({ data, id }) {
+  if (!id || !data) {
+    console.error("ID o datos de usuario no válidos");
+    return;
+  }
+
   try {
     const response = await api.put(`/update-usuario/${id}`, data);
     console.log("Usuario actualizado con éxito:", response.data);
     return response.data;
   } catch (error) {
-    console.error(`Error al actualizar el usuario:`, error);
+    console.error("Error al actualizar el usuario:", error.response ? error.response.data : error.message);
   }
 }
+
 
 export async function deleteUser({user, setUsers}) {
   try {

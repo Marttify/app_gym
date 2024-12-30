@@ -42,6 +42,7 @@ const EntrenadoresList = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de entrenadores</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
+            <TableHead className="text-left text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-left text-gray-300 font-medium">ID de entrenador</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Especialidad</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Calificacion</TableHead>
@@ -55,6 +56,7 @@ const EntrenadoresList = () => {
               key={entrenador.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-left text-gray-100">{entrenador.id}</TableCell>
               <TableCell className="text-left font-medium text-gray-100">{entrenador.usuario_id}</TableCell>
               <TableCell className="text-left text-gray-100">{entrenador.especialidad}</TableCell>
               <TableCell className="text-left text-gray-100">{entrenador.calificacion}</TableCell>

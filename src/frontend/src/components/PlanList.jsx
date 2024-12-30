@@ -84,6 +84,7 @@ const PlanList = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de planes</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
+            <TableHead className="text-center text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-left text-gray-300 font-medium">Nombre</TableHead>
             <TableHead className="text-center text-gray-300 font-medium">Precio</TableHead>
             <TableHead className="text-center text-gray-300 font-medium">duración</TableHead>
@@ -100,6 +101,7 @@ const PlanList = () => {
               key={plan.id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-center text-gray-100">{plan.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{plan.nombre}</TableCell>
               <TableCell className="text-center text-gray-100">{plan.precio}</TableCell>
               <TableCell className="text-center text-gray-100">{plan.duracion}</TableCell>

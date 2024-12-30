@@ -84,6 +84,7 @@ const ProgresoList = () => {
         <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de progresos</TableCaption>
         <TableHeader>
           <TableRow className="bg-gray-800">
+            <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Peso</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Porcentaje de grasa</TableHead>
@@ -100,6 +101,7 @@ const ProgresoList = () => {
               key={progres.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
+              <TableCell className="text-start text-gray-100">{progres.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{progres.usuario_id}</TableCell>
               <TableCell className="text-start text-gray-100">{progres.peso}</TableCell>
               <TableCell className="text-start text-gray-100">{progres.porcentaje_grasa}</TableCell>
