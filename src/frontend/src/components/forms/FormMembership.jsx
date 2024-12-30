@@ -17,7 +17,6 @@ import { Input } from "../ui/input";
 import {createMembership, updateMembership} from "../../services/fetch-membership";
 
 // Esquema de validación
-// Esquema de validación
 const formSchema = z.object({
   usuario_id: z
     .string()

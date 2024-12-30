@@ -37,12 +37,16 @@ import {
 import {SquarePen, Trash2, UserPlus} from 'lucide-react';
 import {deleteAttendance, readAttendance} from '../services/fetch-attendance';
 import AttendanceForm from './forms/FormAttendance';
+import {readUsers} from '../services/fetch-user';
 const AttendancesList = () => {
   const [attendances, setAttendances] = useState([]);
+  const [users, setUsers] = useState([]);
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     readAttendance({setAttendances});
+    readUsers({setUsers});
   }, []);
 
   return (
@@ -86,8 +90,10 @@ const AttendancesList = () => {
         <TableHeader>
           <TableRow className="bg-gray-800 w-full">
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID</TableHead>
-            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Nombre</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
@@ -101,8 +107,10 @@ const AttendancesList = () => {
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
               <TableCell className="text-start text-gray-100">{attendance.id}</TableCell>
-              <TableCell className="text-start font-medium text-gray-100">{new Date(attendance.fecha).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{attendance.usuario_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{users.find((user) => user.id === attendance.usuario_id)?.nombre || "Usuario no encontrado"}</TableCell>
               <TableCell className="text-start text-gray-100">{attendance.estado}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{new Date(attendance.fecha).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(attendance.createdAt).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(attendance.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">

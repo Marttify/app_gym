@@ -47,7 +47,7 @@ export const Membresias = sequelize.define('membresias', {
 });
 
 // Exportación de la tabla Entrenadores
-export const Entrenador = sequelize.define('entrenadores', {
+export const Entrenadores = sequelize.define('entrenadores', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   usuario_id: { type: DataTypes.INTEGER, references: { model: User, key: 'id' } },
   especialidad: DataTypes.STRING(100),
@@ -67,7 +67,7 @@ export const Ejercicio = sequelize.define('ejercicios', {
 export const Rutina = sequelize.define('rutinas', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   usuario_id: { type: DataTypes.INTEGER, references: { model: User, key: 'id' } },
-  entrenador_id: { type: DataTypes.INTEGER, references: { model: Entrenador, key: 'id' } },
+  entrenador_id: { type: DataTypes.INTEGER, references: { model: Entrenadores, key: 'id' } },
   nombre: DataTypes.STRING(100),
   objetivo: DataTypes.TEXT,
   fecha_creacion: DataTypes.DATE,

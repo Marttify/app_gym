@@ -1,5 +1,5 @@
 import express from 'express';
-import {Asistencia, Ejercicio, Rutina, RutinaEjercicio, Progreso, Plan, Membresias, Entrenador, User} from './database.js';
+import {Asistencia, Ejercicio, Rutina, RutinaEjercicio, Progreso, Plan, Membresias, User, Entrenadores} from './database.js';
 import cors from 'cors'
 import bodyParser from 'body-parser';
 
@@ -396,7 +396,7 @@ app.get('/get-membresías/:id', async (req, res) => {
 // Crear una membresía
 app.post('/create-membresia', async (req, res) => {
   try {
-    const newMembresia = await Membresia.create(req.body);
+    const newMembresia = await Membresias.create(req.body);
     res.status(201).send(newMembresia.toJSON());
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -407,7 +407,7 @@ app.put('/update-membresia/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-    const membresia = await Membresia.findByPk(id);
+    const membresia = await Membresias.findByPk(id);
 
     if (!membresia) {
       res.status(404).send('Membresia no encontrada.');
@@ -426,7 +426,7 @@ app.put('/update-membresia/:id', async (req, res) => {
 app.delete('/delete-membresia/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const membresia = await Membresia.findByPk(id);
+    const membresia = await Membresias.findByPk(id);
     if (!membresia) {
       res.status(404).send('Membresia no encontrada.');
       return;
@@ -448,13 +448,13 @@ app.delete('/delete-membresia/:id', async (req, res) => {
 ////////////////////////////////////Entrenadores////////////////////////////////////////////
 // Obtener todos los entrenadores
 app.get('/get-entrenadores', async (req, res) => {
-  const entrenadores = await Entrenador.findAll();
+  const entrenadores = await Entrenadores.findAll();
   res.send(entrenadores.map((entrenador) => entrenador.toJSON()))
 })
 // Obtener el entrenador por ID
 app.get('/get-entrenador/:id', async (req, res) => {
   const id = req.params.id;
-  let entrenador = await Entrenador.findByPk(id);
+  let entrenador = await Entrenadores.findByPk(id);
   if (!entrenador) {
     res.status(404).send('Entrenador no encontrados.');
     return;
@@ -464,7 +464,7 @@ app.get('/get-entrenador/:id', async (req, res) => {
 // Crear una entrenador
 app.post('/create-entrenador', async (req, res) => {
   try {
-    const newEntrenador = await Entrenador.create(req.body);
+    const newEntrenador = await Entrenadores.create(req.body);
     res.status(201).send(newEntrenador.toJSON());
   } catch (error) {
     res.status(400).send({ error: error.message });
@@ -475,7 +475,7 @@ app.put('/update-entrenador/:id', async (req, res) => {
   const id = req.params.id;
 
   try {
-    const entrenador = await Entrenador.findByPk(id);
+    const entrenador = await Entrenadores.findByPk(id);
 
     if (!entrenador) {
       res.status(404).send('Entrenador no encontrada.');
@@ -494,7 +494,7 @@ app.put('/update-entrenador/:id', async (req, res) => {
 app.delete('/delete-entrenador/:id', async (req, res) => {
   const id = req.params.id;
   try {
-    const entrenador = await Entrenador.findByPk(id);
+    const entrenador = await Entrenadores.findByPk(id);
     if (!entrenador) {
       res.status(404).send('Entrenador no encontrada.');
       return;

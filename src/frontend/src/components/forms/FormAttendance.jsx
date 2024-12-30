@@ -64,6 +64,8 @@ const AttendanceForm = ({ action, attendance, id }) => {
                 <Input
                   type="number"
                   {...field}
+                  value={field.value || ""}
+                  onChange={(e) => field.onChange(e.target.valueAsNumber)}
                   placeholder="Ingresa el ID del usuario"
                   className="w-full p-3 text-lg rounded-md bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500"
                 />
@@ -84,6 +86,8 @@ const AttendanceForm = ({ action, attendance, id }) => {
                 <Input
                   type="datetime-local"
                   {...field}
+                  value={field.value || ""}
+                  onChange={(e) => field.onChange(new Date(e.target.value).toISOString().slice(0, 19))}
                   className="w-full p-3 text-lg rounded-md bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500"
                 />
               </FormControl>
