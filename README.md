@@ -36,7 +36,7 @@ Las siguientes rutas están disponibles en el sistema:
 
 #### Diagrama de la lógica de la base de datos
 
-<img src="https://github.com/user-attachments/assets/fc06b2bc-2fc5-44c4-9f27-62ce506d5a3f" alt="Descripción de Base de Datos del Gimnasio" width="600"/>
+<img src="https://github.com/user-attachments/assets/87925be1-7765-4141-99bf-03118e42c45f" alt="Descripción de Base de Datos del Gimnasio" width="600"/>
 <img src="https://github.com/user-attachments/assets/48af18fc-5755-4d8f-b639-1865a59aae3a" alt="Lógica de Base de Datos del Gimnasio" width="600"/>
 
 *Diagrama que representa la estructura y relaciones en la base de datos.*
