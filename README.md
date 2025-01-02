@@ -1,6 +1,6 @@
 # App Gym
 
-Este es un proyecto de ejemplo para un sistema de gestión de gimnasio. El frontend actualmente no tiene funcionalidades interactivas, pero permite visualizar las rutas a través de las URL (endpoints).
+Este es un proyecto de ejemplo para un sistema de gestión de gimnasio. El frontend actualmente tiene funcionalidades CRUD en la tabla de "usuarios", pero permite visualizar las rutas a través de las URL (endpoints).
 
 ## Características
 
