@@ -5,7 +5,7 @@ Este es un proyecto de ejemplo para un sistema de gestión de gimnasio. El front
 ## Características
 
 - El frontend solo muestra las rutas disponibles en el sistema.
-- Tiene funcionalidades basicas de interaccion con el usuario y las tabla de usuario.
+- Tiene funcionalidades basicas de interaccion con el usuario y las tabla de "usuarios".
 
 ## Endpoints
 
