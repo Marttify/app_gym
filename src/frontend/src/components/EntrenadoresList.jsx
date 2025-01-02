@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import api from '../services/api';
+import {Trash2, SquarePen, UserPlus} from 'lucide-react';
 import '../tailwind.css';
-import data from '../services/data.json';
 import {
   Table,
   TableBody,
@@ -12,8 +11,32 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import {readTrainers} from '../services/fetch-trainer';
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogTrigger,
+} from "./ui/dialog"
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "./ui/alert-dialog"
+
+import {deleteTrainer, readTrainers} from '../services/fetch-trainer';
 import {readUsers} from '../services/fetch-user';
+import TrainerForm from './forms/FormEntrenador';
 
 const EntrenadoresList = () => {
   const [trainers, setTrainers] = useState([]);
@@ -35,23 +58,40 @@ const EntrenadoresList = () => {
             <TableHead className="text-left text-gray-300 font-medium">Nombre</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Especialidad</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Calificacion</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
+            <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {trainers.map((entrenador) => (
+          {trainers.map((trainer) => (
             <TableRow
-              key={entrenador.usuario_id}
+              key={trainer.usuario_id}
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
-              <TableCell className="text-left text-gray-100">{entrenador.id}</TableCell>
-              <TableCell className="text-left font-medium text-gray-100">{entrenador.usuario_id}</TableCell>
-                            <TableCell className="text-start text-gray-100">{users.find((user) => user.id === entrenador.usuario_id)?.nombre || "Usuario no encontrado"}</TableCell>
-              <TableCell className="text-left text-gray-100">{entrenador.especialidad}</TableCell>
-              <TableCell className="text-left text-gray-100">{entrenador.calificacion}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(entrenador.createdAt).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(entrenador.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-left text-gray-100">{trainer.id}</TableCell>
+              <TableCell className="text-left font-medium text-gray-100">{trainer.usuario_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{users.find((user) => user.id === trainer.usuario_id)?.nombre || "Usuario no encontrado"}</TableCell>
+              <TableCell className="text-left text-gray-100">{trainer.especialidad}</TableCell>
+              <TableCell className="text-left text-gray-100">{trainer.calificacion}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(trainer.createdAt).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(trainer.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-center text-gray-100">
+                <Dialog>
+                  <DialogTrigger >
+                    <SquarePen />
+                  </DialogTrigger>
+                  <DialogContent className="bg-gray-900 h-max max-h-[90%] scroll-my-10 text-white rounded-lg p-6">
+                    <DialogHeader>
+                      <DialogTitle className="text-lg font-semibold">Actualizar entrenador</DialogTitle>
+                      <DialogDescription className="text-sm text-gray-400">
+                        Completa los campos a modificar y luego dale a continuar para ceptar el cambio.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <TrainerForm action="update" trainer={trainer} id={trainer.id} />
+                  </DialogContent>
+                </Dialog>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

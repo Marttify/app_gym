@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root {
+  /* Colores básicos */
+  --background: 221%, 39%, 11%	;
+  --foreground: 0 0% 100%;
+  
+  /* Fondos silenciados */
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  
+  /* Colores de tarjeta */
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 47.4% 11.2%;
+  
+  /* Colores de ventanas emergentes */
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 47.4% 11.2%;
+  
+  /* Colores de bordes */
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  
+  /* Colores primarios */
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  
+  /* Colores secundarios */
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  
+  /* Colores de acento */
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  
+  /* Colores destructivos */
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 210 40% 98%;
+  
+  /* Colores de anillo */
+  --ring: 215 20.2% 65.1%;
+  
+  /* Radio del borde */
+  --radius: 0.5rem;
+  
+  /* Colores adicionales */
+  --warning: 38 92% 50%;
+  --warning-foreground: 48 96% 89%;
+  --success: 134 61% 41%;
+  --success-foreground: 134 41% 94%;
+}
+
+.dark {
+  /* Colores básicos */
+  --background: 0 0% 100%;
+  --foreground: 221%, 39%, 11%;
+  
+  /* Fondos silenciados */
+  --muted: 222.2 34.4% 17.5%;
+  --muted-foreground: 210 40% 96.1%;
+  
+  /* Colores de tarjeta */
+  --card: 222.2 34.4% 17.5%;
+  --card-foreground: 0 0% 100%;
+  
+  /* Colores de ventanas emergentes */
+  --popover: 222.2 34.4% 17.5%;
+  --popover-foreground: 0 0% 100%;
+  
+  /* Colores de bordes */
+  --border: 222.2 34.4% 24%;
+  --input: 222.2 34.4% 24%;
+  
+  /* Colores primarios */
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  
+  /* Colores secundarios */
+  --secondary: 210 40% 24%;
+  --secondary-foreground: 210 40% 98%;
+  
+  /* Colores de acento */
+  --accent: 210 40% 24%;
+  --accent-foreground: 210 40% 98%;
+  
+  /* Colores destructivos */
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  
+  /* Colores de anillo */
+  --ring: 222.2 34.4% 24%;
+  
+  /* Colores adicionales */
+  --warning: 48 96% 89%;
+  --warning-foreground: 38 92% 50%;
+  --success: 134 41% 94%;
+  --success-foreground: 134 61% 41%;
+}

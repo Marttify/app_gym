@@ -89,8 +89,8 @@ const PlanList = () => {
             <TableHead className="text-center text-gray-300 font-medium">Precio</TableHead>
             <TableHead className="text-center text-gray-300 font-medium">duración</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">descripción</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>

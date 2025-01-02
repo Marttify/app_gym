@@ -35,13 +35,16 @@ import {
 } from "./ui/alert-dialog"
 import {deleteProgress, readProgress} from '../services/fetch-progress';
 import ProgressForm from './forms/FormProgreso';
+import {readUsers} from '../services/fetch-user';
 
 const ProgresoList = () => {
   const [progress, setProgress] = useState([]);
+  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     readProgress({setProgress})
+    readUsers({setUsers})
   }, []);
 
   return (
@@ -86,11 +89,12 @@ const ProgresoList = () => {
           <TableRow className="bg-gray-800">
             <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Nombre</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Peso</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Porcentaje de grasa</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Fecha</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>
@@ -103,6 +107,7 @@ const ProgresoList = () => {
             >
               <TableCell className="text-start text-gray-100">{progres.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{progres.usuario_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{users.find((user) => user.id === progres.usuario_id)?.nombre|| "Usuario no encontrado"}</TableCell>
               <TableCell className="text-start text-gray-100">{progres.peso}</TableCell>
               <TableCell className="text-start text-gray-100">{progres.porcentaje_grasa}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(progres.fecha).toLocaleString()}</TableCell>

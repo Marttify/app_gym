@@ -47,16 +47,16 @@ const UserList = () => {
   }, []);
 
   return (
-    <div className="overflow-x-auto w-[80%] m-auto bg-gray-900 p-6 rounded-lg shadow-lg">
+    <div className="overflow-x-auto w-[80%] bg-gray-900 text-white m-auto p-6 rounded-lg shadow-lg">
       <div className='flex'>
         <Dialog>
-          <DialogTrigger className='text-white px-3 py-2 border-2 border-white rounded-md m-2'>
+          <DialogTrigger className='px-3 py-2 border-2 border-white rounded-md m-2'>
             <UserPlus />
           </DialogTrigger>
-          <DialogContent className="bg-gray-900 h-[90%] scroll-my-10 text-white rounded-lg p-6">
+          <DialogContent className="bg-gray-900 text-white">
             <DialogHeader>
               <DialogTitle className="text-lg font-semibold">Crear nuevo usuario</DialogTitle>
-              <DialogDescription className="text-sm text-gray-400">
+              <DialogDescription className="text-sm">
                 Completa los campos para agregar un nuevo usuario al sistema.
               </DialogDescription>
             </DialogHeader>
@@ -64,7 +64,7 @@ const UserList = () => {
           </DialogContent>
         </Dialog>
         <AlertDialog>
-          <AlertDialogTrigger className='m-2 text-white px-3 py-2 border-2 border-white rounded-md'>
+          <AlertDialogTrigger className='m-2 px-3 py-2 border-2 border-white rounded-md'>
             <Trash2 />
           </AlertDialogTrigger>
           <AlertDialogContent>
@@ -82,45 +82,44 @@ const UserList = () => {
           </AlertDialogContent>
         </AlertDialog>
       </div>
-      <Table className="w-full border border-gray-700">
-        <TableCaption className="text-lg font-bold text-gray-300 mb-4">Lista de Usuarios</TableCaption>
+      <Table>
+        <TableCaption className="text-lg font-bold mb-4">Lista de Usuarios</TableCaption>
         <TableHeader>
-          <TableRow className="bg-gray-800">
-            <TableHead className="text-left text-gray-300 font-medium">ID</TableHead>
-            <TableHead className="w-[150px] text-left text-gray-300 font-medium">Nombre</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Apellido</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Email</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Rol</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Contraseña</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">CreatedAt</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">UpdatedAt</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
-            <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
+          <TableRow>
+            <TableHead >ID</TableHead>
+            <TableHead className="w-[150px]">Nombre</TableHead>
+            <TableHead >Apellido</TableHead>
+            <TableHead >Email</TableHead>
+            <TableHead >Rol</TableHead>
+            <TableHead >Contraseña</TableHead>
+            <TableHead >Creado el</TableHead>
+            <TableHead >Actualizado el</TableHead>
+            <TableHead >Modificar</TableHead>
+            <TableHead >Eliminar</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {users.map((user) => (
             <TableRow
               key={user.id}
-              className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
-              <TableCell className="text-left text-gray-100">{user.id}</TableCell>
-              <TableCell className="text-left font-medium text-gray-100">{user.nombre}</TableCell>
-              <TableCell className="text-left text-gray-100">{user.apellido}</TableCell>
-              <TableCell className="text-left text-gray-100">{user.email}</TableCell>
-              <TableCell className="text-left text-gray-100">{user.rol}</TableCell>
-              <TableCell className="text-left text-gray-100">{user.contraseña}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(user.createdAt).toLocaleString()}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(user.updatedAt).toLocaleString()}</TableCell>
-              <TableCell className="text-center text-gray-100">
+              <TableCell>{user.id}</TableCell>
+              <TableCell>{user.nombre}</TableCell>
+              <TableCell>{user.apellido}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableCell>{user.rol}</TableCell>
+              <TableCell>{user.contraseña}</TableCell>
+              <TableCell>{new Date(user.createdAt).toLocaleString()}</TableCell>
+              <TableCell>{new Date(user.updatedAt).toLocaleString()}</TableCell>
+              <TableCell className="text-center">
                 <Dialog>
                   <DialogTrigger >
                     <SquarePen />
                   </DialogTrigger>
-                  <DialogContent className="bg-gray-900 h-[90%] scroll-my-10 text-white rounded-lg p-6">
+                  <DialogContent className="bg-gray-900 text-white">
                     <DialogHeader>
                       <DialogTitle className="text-lg font-semibold">Actualizar usuario</DialogTitle>
-                      <DialogDescription className="text-sm text-gray-400">
+                      <DialogDescription>
                         Completa los campos a modificar y luego dale a continuar para ceptar el cambio.
                       </DialogDescription>
                     </DialogHeader>
@@ -128,7 +127,7 @@ const UserList = () => {
                   </DialogContent>
                 </Dialog>
               </TableCell>
-              <TableCell className="text-center text-gray-100">
+              <TableCell className="text-center">
                 <AlertDialog>
                   <AlertDialogTrigger>
                     <Trash2 />
@@ -163,11 +162,11 @@ const UserList = () => {
           <TableRow>
             <TableCell
               colSpan={7}
-              className="text-right text-gray-300 font-semibold"
+              className="text-right font-semibold"
             >
               Total de Usuarios:
             </TableCell>
-            <TableCell className="text-right text-gray-100 font-bold">
+            <TableCell className="text-right font-bold">
               {users.length}
             </TableCell>
           </TableRow>

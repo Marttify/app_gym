@@ -90,8 +90,8 @@ const RoutineExercise = () => {
             <TableHead className="text-start text-gray-300 font-medium">ID del ejercicio</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Repeticiones</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Series</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>
@@ -106,7 +106,7 @@ const RoutineExercise = () => {
               <TableCell className="text-start font-medium text-gray-100">{exercise.rutina_id}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.ejercicio_id}</TableCell>
               <TableCell className="text-start text-gray-100">{exercise.repeticiones}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(exercise.series).toLocaleString()}</TableCell>
+              <TableCell className="text-start text-gray-100">{exercise.series}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(exercise.createdAt).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(exercise.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">

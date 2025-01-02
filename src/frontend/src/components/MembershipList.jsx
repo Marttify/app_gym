@@ -36,13 +36,16 @@ import {
 
 import {deleteMembership, readMemberships} from '../services/fetch-membership';
 import MembershipForm from './forms/FormMembership';
+import {readUsers} from '../services/fetch-user';
 
 const MembershipList = () => {
   const [memberships, setMemberships] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     readMemberships({setMemberships});
+    readUsers({setUsers});
   }, []);
 
   return (
@@ -87,11 +90,13 @@ const MembershipList = () => {
           <TableRow className="bg-gray-800">
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID plan</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Nombre</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha inicio</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha fin</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>
@@ -104,6 +109,8 @@ const MembershipList = () => {
             >
               <TableCell className="text-start font-medium text-gray-100">{membership.id}</TableCell>
               <TableCell className="text-start font-medium text-gray-100">{membership.usuario_id}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{membership.plan_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{users.find((user) => user.id === membership.usuario_id)?.nombre || "Usuario no encontrado"}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(membership.fecha_inicio).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(membership.fecha_fin).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{membership.estado ? "activa" : "inactiva"}</TableCell>

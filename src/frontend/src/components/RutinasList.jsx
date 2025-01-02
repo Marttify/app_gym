@@ -37,13 +37,16 @@ import {
 
 import {deleteRoutine, readRoutine} from '../services/fetch-routine';
 import RoutineForm from './forms/FormRutina';
+import {readUsers} from '../services/fetch-user';
 
 const Routine = () => {
   const [routine, setRoutine] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     readRoutine({setRoutine});
+    readUsers({setUsers});
   }, []);
 
   return (
@@ -87,12 +90,14 @@ const Routine = () => {
         <TableHeader>
           <TableRow className="bg-gray-800">
             <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
-            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de la rutina</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">ID del ejercicio</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Repeticiones</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Series</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">updatedAt</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">ID de usuario</TableHead>
+            <TableHead className="w-[150px] text-start text-gray-300 font-medium">Nombre</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">ID del entrenador</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Nombre rutina</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">objetivo</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">fecha_creacion</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>
@@ -104,10 +109,12 @@ const Routine = () => {
               className="bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
             >
               <TableCell className="text-start text-gray-100">{rout.id}</TableCell>
-              <TableCell className="text-start font-medium text-gray-100">{rout.rutina_id}</TableCell>
-              <TableCell className="text-start text-gray-100">{rout.ejercicio_id}</TableCell>
-              <TableCell className="text-start text-gray-100">{rout.repeticiones}</TableCell>
-              <TableCell className="text-start text-gray-100">{new Date(rout.series).toLocaleString()}</TableCell>
+              <TableCell className="text-start font-medium text-gray-100">{rout.usuario_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{users.find((user) => user.id === rout.usuario_id)?.nombre || "Usuario no encontrado"}</TableCell>
+              <TableCell className="text-start text-gray-100">{rout.entrenador_id}</TableCell>
+              <TableCell className="text-start text-gray-100">{rout.nombre}</TableCell>
+              <TableCell className="text-start text-gray-100">{rout.objetivo}</TableCell>
+              <TableCell className="text-start text-gray-100">{new Date(rout.fecha_creacion).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(rout.createdAt).toLocaleString()}</TableCell>
               <TableCell className="text-start text-gray-100">{new Date(rout.updatedAt).toLocaleString()}</TableCell>
               <TableCell className="text-center text-gray-100">

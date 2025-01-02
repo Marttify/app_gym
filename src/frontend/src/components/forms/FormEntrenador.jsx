@@ -49,25 +49,6 @@ const TrainerForm = ({ action, trainer, id }) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-6 w-[90%] max-w-lg bg-gray-900 text-white p-6 rounded-lg shadow-md m-auto"
       >
-        {/* Campo Usuario ID */}
-        <FormField
-          control={form.control}
-          name="usuario_id"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-lg font-semibold">ID de Usuario</FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  {...field}
-                  placeholder="Ingresa el ID del usuario"
-                  className="w-full p-3 text-lg rounded-md bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
         {/* Campo Especialidad */}
         <FormField

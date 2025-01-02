@@ -93,8 +93,8 @@ const EjerciciosList = () => {
             <TableHead className="text-start text-gray-300 font-medium">ID</TableHead>
             <TableHead className="w-[150px] text-start text-gray-300 font-medium">Fecha</TableHead>
             <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">createdAt</TableHead>
-            <TableHead className="text-start text-gray-300 font-medium">Estado</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Creado el</TableHead>
+            <TableHead className="text-start text-gray-300 font-medium">Actualizado el</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Modificar</TableHead>
             <TableHead className="text-left text-gray-300 font-medium">Eliminar</TableHead>
           </TableRow>
