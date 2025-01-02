@@ -34,9 +34,10 @@ Las siguientes rutas están disponibles en el sistema:
 - **Docker**: Herramienta para contenedores que permite ejecutar el proyecto de manera aislada y uniforme en cualquier entorno.
 
 
-#### Diagrama de la Lógica de la Base de Datos
+#### Diagrama de la lógica de la base de datos
 
-<img src="https://github.com/user-attachments/assets/8c6198ac-926d-47aa-85cb-8ea1e90ad950" alt="Lógica de Base de Datos del Gimnasio" width="600"/>
+<img src="https://github.com/user-attachments/assets/fc06b2bc-2fc5-44c4-9f27-62ce506d5a3f" alt="Descripción de Base de Datos del Gimnasio" width="600"/>
+<img src="https://github.com/user-attachments/assets/48af18fc-5755-4d8f-b639-1865a59aae3a" alt="Lógica de Base de Datos del Gimnasio" width="600"/>
 
 *Diagrama que representa la estructura y relaciones en la base de datos.*
 
@@ -48,7 +49,7 @@ Las siguientes rutas están disponibles en el sistema:
 - **Tailwind CSS**: Herramienta de utilidad para estilizar la interfaz.
 - **shadcn/ui**: Librería para construir componentes de interfaz de usuario reutilizables y consistentes.
 
-#### Capturas de Pantalla de la Interfaz de Usuario
+#### Capturas de pantalla de la interfaz de usuario
 
 1. **Vista principal de la tabla**  
    <img src="https://github.com/user-attachments/assets/aec1d4b2-4b27-4ad9-b0be-f3c4ca909572" alt="Dashboard Principal" width="500"/>
